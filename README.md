@@ -10,9 +10,9 @@ I find getting setup with the buildtooling and depedency setup for c/c++ painful
 Goals :
 * writing a c/c++ simple package with dependencies should be an easy w.r.t to build tool and dependency setup
 * unit-testing framework support should be built in
+* it should be painlessly-easy to add third-party dependencies. Eg. protobuf, leveldb etc. all necessary dependencies should be referenced and linked using package local artifacts. dependencies libraries should be easy to build and depend on in a portable, deterministic and easy way
 * should be feasible to run edit-compile-edit cycles via vim or emacs
 * clean seperation of source code and built artifacts
-* all necessary dependencies should be referenced and linked using package local artifacts - i.e easily portable
 * basic build targets - executable, library, test, clean should be available by default
 * should take almost no learning effort and less than 5 mins to setup and execute a c/c++ program
 
