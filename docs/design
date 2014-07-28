@@ -1,0 +1,43 @@
+core api
+- create project / name
+- create library module / project_name, lib_module_name
+- create application / project_name, app_name
+
+tooling api
+- prepare package
+- make
+- clean
+
+user workflow : 
+- create project
+- select third-party dependencies
+  possibly define new as cmake files
+for : 
+    create lib modules
+    write impl and unit-tests
+    make
+    make test
+end
+
+for : 
+    create application
+    write main
+    make
+    make run
+end
+
+development loop : 
+    commit and checkin
+    clone, pull, build
+    edit-complile-edit
+    checkin
+done
+
+package loop : 
+    build docker image
+done
+
+deployment loop : 
+    publish to docker repo
+    deploy and test
+done
