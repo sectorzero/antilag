@@ -1,0 +1,19 @@
+#!/bin/sh
+
+set -x
+
+# TODO : check if this is an antilag package
+if [ ! -e 'CMakeLists.txt' ]; then
+    exit 1
+fi
+
+if [ -d '.build-standard' ]; then
+    rm -rf .build-standard
+    rm -rf .build
+fi
+
+mkdir .build-standard
+ln -s .build-standard build
+
+cd build
+cmake ..

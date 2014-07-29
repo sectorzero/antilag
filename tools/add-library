@@ -1,0 +1,47 @@
+#!/bin/sh
+set -x
+
+# input : package_name, library_name
+
+if [ -z "$ANTILAG_HOME" ]; then
+    exit 1
+fi
+
+package_name=$1
+if [ -z "$package_name" ]; then
+    exit 1
+fi
+
+# to check if this is being executed from within an antilag package
+working_directory=$(basename `pwd`)
+if [ "$working_directory" != "$package_name" ]; then
+    exit 1
+fi
+
+library_name=$2
+if [ -z "$library_name" ]; then
+    exit 1
+fi
+
+library_directory="lib$library_name"
+
+if [ -e "$library_directory" ]; then
+    exit 1
+fi
+
+mkdir "$library_directory"
+cd "$library_directory"
+
+tmp_file="/tmp/$package_name-$library_name_CMakeLists.txt.template"
+cp $ANTILAG_HOME/stubs/library-CMakeLists.txt.template $tmp_file
+sed -i '' -e 's/_PACKAGENAME_/'"$package_name"'/' $tmp_file
+sed -i '' -e 's/_LIBRARYNAME_/'"$library_name"'/' $tmp_file
+mv $tmp_file ./CMakeLists.txt
+
+cd ..
+echo "add_subdirectory($library_directory)" >> CMakeLists.txt
+
+# git add .
+# git commit -m "Added executable : $executable_name"
+
+
