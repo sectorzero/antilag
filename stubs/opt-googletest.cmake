@@ -8,12 +8,17 @@ set(GOOGLE_TEST_VERSION_URL "https://googletest.googlecode.com/files/${GOOGLE_TE
 set(GOOGLE_TEST_PROJ_NAME "GoogleTest")
 set(GOOGLE_TEST_PREFIX_DIR "${CMAKE_BINARY_DIR}/${GOOGLE_TEST_PROJ_NAME}")
 
-download_and_install_file(
-    ${GOOGLE_TEST_VERSION}
-    ${GOOGLE_TEST_VERSION_URL}
-    ${GOOGLE_TEST_VERSION_SHA1}
-    "${GOOGLE_TEST_PREFIX_DIR}/repo"
-    )
+# How this works
+# gtest build is a cmake build. This means we can use the full facility of
+# cmake add_subdirectory to point to the directory of gtest which will invoke
+# the build for gtest and also expose the well defined include paths and libraries
+# without us having to re-define it again. This was the way cmake was designed to
+# work and we are taking advantage of it to have clean design.
+#
+# What this script does is provide a flow to only download and extract the source
+# of gtest and expose it's source dir path to the overall cmake process. The
+# GOOGLE_TEST_SOURCE_DIR will be used at the top level CMakeLists.txt to use it 
+# in the add_subdirectory()
 
 ExternalProject_Add(
     ${GOOGLE_TEST_PROJ_NAME}
@@ -21,10 +26,13 @@ ExternalProject_Add(
     DOWNLOAD_DIR ${GOOGLE_TEST_PREFIX_DIR}/repo
     URL ${GOOGLE_TEST_VERSION_URL}
     URL_HASH SHA1=${GOOGLE_TEST_VERSION_SHA1}
+    CONFIGURE_COMMAND ""
+    BUILD_COMMAND ""
     INSTALL_COMMAND ""
     LOG_DOWNLOAD ON
     LOG_CONFIGURE ON
     LOG_BUILD ON
     )
 
-# TODO : Need to add paths for include and library references
+ExternalProject_Get_Property(${GOOGLE_TEST_PROJ_NAME} source_dir)
+set(GOOGLE_TEST_SOURCE_DIR ${source_dir})

@@ -1,8 +1,12 @@
 #!/bin/sh
+
 set -x
 
 # input : package_name, library_name
 
+# ----------------------------------
+# verify parameters 
+# ----------------------------------
 if [ -z "$ANTILAG_HOME" ]; then
     exit 1
 fi
@@ -23,8 +27,10 @@ if [ -z "$library_name" ]; then
     exit 1
 fi
 
+# ----------------------------------
+# lib 
+# ----------------------------------
 library_directory="lib$library_name"
-
 if [ -e "$library_directory" ]; then
     exit 1
 fi
@@ -32,16 +38,31 @@ fi
 mkdir "$library_directory"
 cd "$library_directory"
 
-tmp_file="/tmp/$package_name-$library_name_CMakeLists.txt.template"
-cp $ANTILAG_HOME/stubs/library-CMakeLists.txt.template $tmp_file
-sed -i '' -e 's/_PACKAGENAME_/'"$package_name"'/' $tmp_file
-sed -i '' -e 's/_LIBRARYNAME_/'"$library_name"'/' $tmp_file
-mv $tmp_file ./CMakeLists.txt
+lib_tmp_file="/tmp/$package_name-$library_name_CMakeLists.txt.template"
+cp $ANTILAG_HOME/stubs/library-CMakeLists.txt.template $lib_tmp_file
+sed -i '' -e 's/_PACKAGENAME_/'"$package_name"'/' $lib_tmp_file
+sed -i '' -e 's/_LIBRARYNAME_/'"$library_name"'/' $lib_tmp_file
+mv $lib_tmp_file ./CMakeLists.txt
 
-cd ..
+# ----------------------------------
+# lib/unittests
+# ----------------------------------
+unittests_directory="unittests"
+
+mkdir "$unittests_directory"
+cd "$unittests_directory"
+
+test_tmp_file="/tmp/$package_name-$library_name-unittests_CMakeLists.txt.template"
+cp $ANTILAG_HOME/stubs/unittests-CMakeLists.txt.template $test_tmp_file
+sed -i '' -e 's/_PACKAGENAME_/'"$package_name"'/' $test_tmp_file
+sed -i '' -e 's/_LIBRARYNAME_/'"$library_name"'/' $test_tmp_file
+mv $test_tmp_file ./CMakeLists.txt
+
+# ----------------------------------
+# root CMakeLists.txt
+# ----------------------------------
+cd ../../
 echo "add_subdirectory($library_directory)" >> CMakeLists.txt
 
 # git add .
 # git commit -m "Added executable : $executable_name"
-
-

@@ -11,3 +11,7 @@ add_library(
     STATIC
     ${lib_LIBRARYNAME__SRCS}
     )
+
+if(ENABLE_TESTING)
+    add_subdirectory(unittests)
+endif()
