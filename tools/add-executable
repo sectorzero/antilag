@@ -1,0 +1,41 @@
+#!/bin/sh
+
+set -x
+
+# input : package_name, executable_name
+
+if [ -z "$ANTILAG_HOME" ]; then
+    exit 1
+fi
+
+package_name=$1
+if [ -z "$package_name" ]; then
+    exit 1
+fi
+
+# to check if this is being executed from within an antilag package
+working_directory=$(basename `pwd`)
+if [ "$working_directory" != "$package_name" ]; then
+    exit 1
+fi
+
+executable_name=$2
+if [ -z "$executable_name" ]; then
+    exit 1
+fi
+
+if [ -e "$executable_name" ]; then
+    exit 1
+fi
+
+mkdir "$executable_name"
+cd "$executable_name"
+echo "project ($package_name-$executable_name)" > CMakeLists.txt
+echo "add_executable($executable_name main.cpp)" >> CMakeLists.txt
+touch main.cpp
+
+cd ..
+echo "add_subdirectory($executable_name)" >> CMakeLists.txt
+
+# git add .
+# git commit -m "Added executable : $executable_name"
