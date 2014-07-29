@@ -15,5 +15,5 @@ fi
 mkdir .build-standard
 ln -s .build-standard build
 
-cd build
-cmake ..
+cd .build-standard
+cmake -DCMAKE_BUILD_TYPE=debug ..
