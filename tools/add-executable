@@ -30,8 +30,13 @@ fi
 
 mkdir "$executable_name"
 cd "$executable_name"
-echo "project ($package_name-$executable_name)" > CMakeLists.txt
-echo "add_executable($executable_name main.cpp)" >> CMakeLists.txt
+
+tmp_file="/tmp/$package_name-$executable_name_CMakeLists.txt.template"
+cp $ANTILAG_HOME/stubs/executable-CMakeLists.txt.template $tmp_file
+sed -i '' -e 's/_PACKAGENAME_/'"$package_name"'/' $tmp_file
+sed -i '' -e 's/_EXECNAME_/'"$executable_name"'/' $tmp_file
+mv $tmp_file ./CMakeLists.txt
+
 touch main.cpp
 
 cd ..

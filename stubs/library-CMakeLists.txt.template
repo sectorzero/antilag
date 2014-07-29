@@ -7,7 +7,7 @@ file(GLOB
     ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp) 
 
 add_library(
-    lib_LIBRARYNAME_ 
+    _LIBRARYNAME_ 
     STATIC
     ${lib_LIBRARYNAME__SRCS}
     )

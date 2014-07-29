@@ -1,0 +1,12 @@
+project (_PACKAGENAME_-_EXECNAME_)
+
+include_directories(_EXECNAME_ 
+    ${CMAKE_SOURCE_DIR}
+    )
+
+add_executable(_EXECNAME_ 
+    main.cpp
+    )
+
+target_link_libraries(_EXECNAME_ 
+    )
