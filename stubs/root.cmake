@@ -1,3 +1,3 @@
-include(.cmake/build-flags.cmake)
-include(.cmake/build-definitions.cmake)
-include(.cmake/utils.cmake)
+include(.antilag/build-flags.cmake)
+include(.antilag/build-definitions.cmake)
+include(.antilag/utils.cmake)
