@@ -1,6 +1,6 @@
 antilag 
 ============
-simplified and structures c++ build tool setup using cmake and with integrated support for common libraries
+simplified and structured c++ build tool setup using cmake and with integrated support for common libraries
 
 Motivation : 
 I find setting up the build and depedency for c/c++ project extremely painful and arcane (https://www.youtube.com/watch?v=tTDn604ipYY). I am not sure how many folks relate to my pain. Finding and linking to third-party dependency is an art in terms of process. If there is a simple structure to it and if something makes everything work predictably it would be great. When I want to write a simple program, I want to do it without any effort spent on trying to weave the build / dependency labrynth. The flow of writing and running simple programs should have zero 'setup overhead'
