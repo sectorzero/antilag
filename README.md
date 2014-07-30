@@ -18,12 +18,21 @@ Goals :
 * should take almost no learning effort and less than 5 mins to setup and execute a c/c++ program
 * should provide easy way to invoke debuggers and profilers ( stretch goal )
 
-Current Tooling Integration : 
+Current Library / Tooling Integration : 
 * Uses cmake - the simplest engine with required power
-* Testing framework - integrated out of the box with googletest and googlemock
+* Testing framework - integrated out of the box with googletest
 * Git support
-* Boost support
 * Designed for vim/emacs compile-edit-compile cycles
+* C++11 ( currently probably works only on MacOS )
+
+TODO Library / Tooling Integration : 
+* Protobuf
+* Testing framework - integrated out of the box with googlemock
+* Testing framework - Catch
+* Boost support
+* logging - easyloggingcpp
+* google-breakpad
+* leveldb, wiredtiger, sqlite
 
 TODO : 
 * profiling support ??
