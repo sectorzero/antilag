@@ -29,3 +29,4 @@ TODO :
 * profiling support ??
 * debugger support ??
 * provide example package on showing how to include googleprotobuf as dependency and write an unittest
+* Logging Library : this seems to be a good choice, c++11, header-only, good feature set : https://github.com/easylogging/easyloggingpp
