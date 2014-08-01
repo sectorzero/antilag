@@ -8,5 +8,5 @@ file(GLOB
 
 foreach( testsrcfile ${lib_LIBRARYNAME__UNITTESTS_SRCS} )
     string(REPLACE ".cpp" "" testname ${testsrcfile} )
-    add_cxx_test(${testname} ${testsrcfile})
+    add_cxx_test(${testname} ${testsrcfile} _LIBRARYNAME_)
 endforeach()

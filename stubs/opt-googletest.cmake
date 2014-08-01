@@ -36,15 +36,15 @@ if(ENABLE_TESTING)
     
     enable_testing()
 
-    function(add_cxx_test name src)
+    function(add_cxx_test name src libs)
       include_directories(
           ${GOOGLE_TEST_SOURCE_DIR}/include
           ${CMAKE_SOURCE_DIR}
           )
       add_executable(${name} ${src})
-      # foreach (lib "${libs}")
-      #   target_link_libraries(${name} ${lib})
-      # endforeach()
+      foreach (lib "${libs}")
+        target_link_libraries(${name} ${lib})
+      endforeach()
       target_link_libraries(${name} 
           gtest
           gtest_main
