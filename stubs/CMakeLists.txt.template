@@ -4,13 +4,3 @@ include(.antilag/root.cmake)
 
 set(PROJECT_NAME _PACKAGENAME_)
 project(${PROJECT_NAME})
-
-if(ENABLE_TESTING)
-
-    add_subdirectory(
-        ${GOOGLE_TEST_SOURCE_DIR}
-        )
-
-    enable_testing()
-
-endif()

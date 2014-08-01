@@ -3,4 +3,5 @@ include(.antilag/build-definitions.cmake)
 
 include(.antilag/utils.cmake)
 
+include(.antilag/opt-pthread.cmake)
 include(.antilag/opt-googletest.cmake)

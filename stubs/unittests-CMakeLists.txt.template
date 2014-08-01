@@ -1,11 +1,5 @@
 project (_PACKAGENAME_-_LIBRARYNAME_-unittests)
 
-include_directories(
-    ${CMAKE_SOURCE_DIR}
-    ${gtest_SOURCE_DIR}/include
-    ${gtest_SOURCE_DIR}
-    )
-
 file(GLOB 
     lib_LIBRARYNAME__UNITTESTS_SRCS 
     RELATIVE
@@ -13,14 +7,6 @@ file(GLOB
     ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp) 
 
 foreach( testsrcfile ${lib_LIBRARYNAME__UNITTESTS_SRCS} )
-
     string(REPLACE ".cpp" "" testname ${testsrcfile} )
-
-    add_executable(${testname} ${testsrcfile})
-
-    target_link_libraries(${testname} 
-        gtest
-        gtest_main
-        )
-
+    add_cxx_test(${testname} ${testsrcfile})
 endforeach()
