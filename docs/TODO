@@ -1,0 +1,7 @@
+Feature TODO : 
+- [prototype ok] Download and store third-party package in .antilag-repo. Use this cache for ExternalProject_Add DOWNLOAD step
+- [not started] Have seperate config file to specfiy third-party package names, location and hash
+- [prototyoe ok] Rework google-test framework setup
+- [not started] Add easycpplogging support 
+- [prototype ok] Implement Protobuf Support
+- [not started] Boost support
