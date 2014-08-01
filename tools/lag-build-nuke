@@ -3,13 +3,17 @@
 set -x
 
 # TODO : check if this is an antilag package
+if [ ! -d '.antilag' ]; then
+    exit 1
+fi
+
 if [ ! -e 'CMakeLists.txt' ]; then
     exit 1
 fi
 
 if [ -d '.build-standard' ]; then
     rm -rf .build-standard
-    rm -rf .build
+    rm -rf build
 fi
 
 mkdir .build-standard
