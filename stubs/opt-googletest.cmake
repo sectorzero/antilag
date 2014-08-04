@@ -2,21 +2,28 @@ include(ExternalProject)
 
 set(GOOGLE_TEST_VERSION "gtest-1.7.0.zip")
 set(GOOGLE_TEST_VERSION_SHA1 "f85f6d2481e2c6c4a18539e391aa4ea8ab0394af")
-
 set(GOOGLE_TEST_VERSION_URL "https://googletest.googlecode.com/files/${GOOGLE_TEST_VERSION}")
-# set(GOOGLE_TEST_VERSION_URL "file:///${CMAKE_SOURCE_DIR}/.antilag-repo/${GOOGLE_TEST_VERSION}")
-message(STATUS ${GOOGLE_PROTOBUF_VERSION_URL})
 
 if(ENABLE_TESTING)
 
     set(GOOGLE_TEST_PROJ_NAME "GoogleTest")
     set(GOOGLE_TEST_PREFIX_DIR "${CMAKE_BINARY_DIR}/${GOOGLE_TEST_PROJ_NAME}")
     
+    download_and_install_file(
+        ${GOOGLE_TEST_VERSION}
+        ${GOOGLE_TEST_VERSION_URL}
+        ${GOOGLE_TEST_VERSION_SHA1}
+        "${CMAKE_SOURCE_DIR}/.antilag-repo"
+        )
+    
+    set(GOOGLE_TEST_VERSION_URL_REPO "file://${CMAKE_SOURCE_DIR}/.antilag-repo/${GOOGLE_TEST_VERSION}")
+    message(STATUS ${GOOGLE_TEST_VERSION_URL_REPO})
+
     ExternalProject_Add(
         ${GOOGLE_TEST_PROJ_NAME}
         PREFIX  ${GOOGLE_TEST_PREFIX_DIR}
         DOWNLOAD_DIR ${GOOGLE_TEST_PREFIX_DIR}/repo
-        URL ${GOOGLE_TEST_VERSION_URL}
+        URL ${GOOGLE_TEST_VERSION_URL_REPO}
         URL_HASH SHA1=${GOOGLE_TEST_VERSION_SHA1}
         # CMAKE_ARGS "${gtest_cmake_args}"
         UPDATE_COMMAND ""
