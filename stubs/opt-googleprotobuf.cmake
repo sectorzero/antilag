@@ -53,14 +53,10 @@ if(OPT_PROTOBUF)
     link_directories(${GOOGLE_PROTOBUF_PREFIX_DIR}/lib)
     
     # proto generation : source modified from MaidSafe as use-case was similar
-    function(generate_proto_src BaseName ProtoRootDir)
-    
-      set(ProtoRelativeDir "proto")
+    function(generate_proto_src BaseName ProtoRootDir GeneratedProtoRootDir ProtoRelativeDir)
     
       set(${BaseName}ProtoSources "" PARENT_SCOPE)
       set(${BaseName}ProtoHeaders "" PARENT_SCOPE)
-    
-      set(GeneratedProtoRootDir ${CMAKE_CURRENT_BINARY_DIR})
     
       # Get list of .proto files
       file(GLOB ProtoFiles RELATIVE ${ProtoRootDir} ${ProtoRootDir}/${ProtoRelativeDir}/*.proto)

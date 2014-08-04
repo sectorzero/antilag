@@ -1,12 +1,32 @@
 project (_PACKAGENAME_-_EXECNAME_)
 
-include_directories(_EXECNAME_ 
-    ${CMAKE_SOURCE_DIR}
-    )
-
 add_executable(_EXECNAME_ 
     main.cpp
     )
 
+target_include_directories(
+    _EXECNAME_ 
+    PRIVATE ${CMAKE_SOURCE_DIR}
+    )
+
+# For each dependent library, get the included_directories
+# property and add it to the include_directories for this
+# executable target
+#   get_property(
+#       AddressBook_IncludeDirs
+#       TARGET AddressBook
+#       PROPERTY INCLUDE_DIRECTORIES
+#       )
+#   
+#   foreach(dir ${AddressBook_IncludeDirs})
+#       message(STATUS "dir='${dir}'")
+#   endforeach()
+#   
+#   target_include_directories(
+#       addrbookapp
+#       PRIVATE ${AddressBook_IncludeDirs}
+#       )
+
 target_link_libraries(_EXECNAME_ 
+    protobuf
     )

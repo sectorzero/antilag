@@ -9,11 +9,8 @@ file(GLOB
 generate_proto_src(
     _LIBRARYNAME_
     ${CMAKE_CURRENT_SOURCE_DIR}
-    )
-
-include_directories(
-    ${GOOGLE_PROTOBUF_INCLUDE_PATH}
-    ${_LIBRARYNAME_ProtoHeaders}
+    ${CMAKE_CURRENT_BINARY_DIR}
+    "proto"
     )
 
 add_library(
@@ -21,6 +18,12 @@ add_library(
     STATIC
     ${lib_LIBRARYNAME__SRCS}
     ${_LIBRARYNAME_ProtoSources}
+    )
+
+target_include_directories(
+    _LIBRARYNAME_
+    PUBLIC ${GOOGLE_PROTOBUF_INCLUDE_PATH}
+    PUBLIC "${CMAKE_CURRENT_BINARY_DIR}/proto"
     )
 
 add_dependencies(
