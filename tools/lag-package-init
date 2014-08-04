@@ -41,6 +41,7 @@ cp $ANTILAG_HOME/stubs/build-definitions.cmake .antilag
 cp $ANTILAG_HOME/stubs/utils.cmake .antilag
 cp $ANTILAG_HOME/stubs/opt-googletest.cmake .antilag
 cp $ANTILAG_HOME/stubs/opt-pthread.cmake .antilag
+cp $ANTILAG_HOME/stubs/opt-googleprotobuf.cmake .antilag
 
 mkdir .build-standard
 ln -s .build-standard build

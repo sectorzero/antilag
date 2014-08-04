@@ -6,10 +6,26 @@ file(GLOB
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp) 
 
+generate_proto_src(
+    _LIBRARYNAME_
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    )
+
+include_directories(
+    ${GOOGLE_PROTOBUF_INCLUDE_PATH}
+    ${_LIBRARYNAME_ProtoHeaders}
+    )
+
 add_library(
     _LIBRARYNAME_ 
     STATIC
     ${lib_LIBRARYNAME__SRCS}
+    ${_LIBRARYNAME_ProtoSources}
+    )
+
+add_dependencies(
+    _LIBRARYNAME_
+    ${GOOGLE_PROTOBUF_PROJ_NAME}
     )
 
 if(ENABLE_TESTING)
