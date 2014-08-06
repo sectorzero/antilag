@@ -44,20 +44,36 @@ if(ENABLE_TESTING)
     enable_testing()
 
     function(add_cxx_test name src libs)
-      include_directories(
-          ${GOOGLE_TEST_SOURCE_DIR}/include
-          ${CMAKE_SOURCE_DIR}
-          )
+      message(STATUS "[INFO] add_cxx_test : ${name}, ${src}, ${libs}")
+
+      # Executable Target
       add_executable(${name} ${src})
+
+      # Dependent library compile and link resources
       foreach (lib "${libs}")
-        target_link_libraries(${name} ${lib})
+          get_property(
+              ${lib}_IncludeDirs
+              TARGET ${lib}
+              PROPERTY INCLUDE_DIRECTORIES
+              )
+          target_include_directories(${name} PRIVATE ${${lib}_IncludeDirs})
+
+          target_link_libraries(${name} ${lib})
       endforeach()
+
+      # Dependent 'google-test' compile and link resources
+      target_include_directories(${name} PRIVATE ${GOOGLE_TEST_SOURCE_DIR}/include)
+
       target_link_libraries(${name} 
           gtest
           gtest_main
           # pthread
           )
+
+      # Explicit dependency on googletest ExternalProject_Add
       add_dependencies(${name} ${GOOGLE_TEST_PROJ_NAME})
+
+      # Add test instance
       add_test(
           NAME ${name} 
           COMMAND ${name} "--gtest_break_on_failure"

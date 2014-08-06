@@ -26,7 +26,7 @@ target_include_directories(
 #       addrbookapp
 #       PRIVATE ${AddressBook_IncludeDirs}
 #       )
-
-target_link_libraries(_EXECNAME_ 
-    protobuf
-    )
+#
+#   target_link_libraries(_EXECNAME_ 
+#       AddressBook
+#       )

@@ -27,6 +27,11 @@ target_include_directories(
     PUBLIC ${GOOGLE_PROTOBUF_INCLUDE_PATH}
     )
 
+target_link_libraries(
+    _LIBRARYNAME_
+    protobuf
+    )
+
 add_dependencies(
     _LIBRARYNAME_
     ${GOOGLE_PROTOBUF_PROJ_NAME}
