@@ -1,10 +1,11 @@
 Feature Completed :
 - [done] Rework google-test framework setup
+- [done] Implement Protobuf Support v0
 
 Feature TODO : 
 - [prototype ok] Download and store third-party package in .antilag-repo. Use this cache for ExternalProject_Add DOWNLOAD step
 - [not started] Have seperate config file to specfiy third-party package names, location and hash
 - [not started] Add easycpplogging support 
-- [prototype ok] Implement Protobuf Support
 - [not started] Boost support
 - [not working] pthread support, disabled
+- [thinking] Implement Protobuf Support v1

@@ -22,8 +22,9 @@ add_library(
 
 target_include_directories(
     _LIBRARYNAME_
-    PUBLIC ${GOOGLE_PROTOBUF_INCLUDE_PATH}
+    PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}"
     PUBLIC "${CMAKE_CURRENT_BINARY_DIR}/proto"
+    PUBLIC ${GOOGLE_PROTOBUF_INCLUDE_PATH}
     )
 
 add_dependencies(
