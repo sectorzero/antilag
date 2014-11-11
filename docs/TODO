@@ -1,11 +1,14 @@
 Feature Completed :
 - [done] Rework google-test framework setup
 - [done] Implement Protobuf Support v0
+- [done] Download and store third-party package in .antilag-repo. Use this cache for ExternalProject_Add DOWNLOAD step
+- [done] Add easycpplogging support 
+- [done] Implement Protobuf Support v1
 
 Feature TODO : 
-- [prototype ok] Download and store third-party package in .antilag-repo. Use this cache for ExternalProject_Add DOWNLOAD step
 - [not started] Have seperate config file to specfiy third-party package names, location and hash
-- [not started] Add easycpplogging support 
 - [not started] Boost support
 - [not working] pthread support, disabled
-- [thinking] Implement Protobuf Support v1
+- [thinking] users should be able to specify the structure and depdendencies in a simple json configuration file and the lag-prepare should create/modify the CMakeLists as needed. The only user interaction should the be the simple json config for basic usage
+- [thinking] the .antilag templates and stubs should be included as a git submodule which does not change or needs to be checked in. This is read-only date and also can be upgraded
+- [thinking] how to add run, test, and debug targets which can be executed from within vim
