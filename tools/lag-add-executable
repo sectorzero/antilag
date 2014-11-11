@@ -38,6 +38,7 @@ sed -i '' -e 's/_EXECNAME_/'"$executable_name"'/' $tmp_file
 mv $tmp_file ./CMakeLists.txt
 
 touch main.cpp
+cat $ANTILAG_HOME/stubs/executable-main.cpp.stub >> main.cpp
 
 cd ..
 echo "add_subdirectory($executable_name)" >> CMakeLists.txt
